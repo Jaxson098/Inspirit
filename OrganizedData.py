@@ -4,17 +4,28 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import regex as re
 from transformers import pipeline
 # nltk.download('vader_lexicon')
-electorateOpinion_abortion = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/imagration.csv")
-electorateOpinion_crime = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/crimePolicies.csv")
-electorateOpinion_defenseSpending = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/defenseSpending.csv")
-electorateOpinion_econemy = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/ecenomicConfidance.csv")
-electorateOpinion_education = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/education.csv")
-electorateOpinion_guns = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/guns.csv")
-electorateOpinion_healthcare = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/healthcare.csv")
-electorateOpinion_imagration = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/imagration.csv")
-electorateOpinion_taxes = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/taxes.csv")
-electorateData_party = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/PartyAfiliation.csv")
-electorateData_vote = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/electionResults.csv")
+# electorateOpinion_abortion = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/imagration.csv")
+# electorateOpinion_crime = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/crimePolicies.csv")
+# electorateOpinion_defenseSpending = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/defenseSpending.csv")
+# electorateOpinion_econemy = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/ecenomicConfidance.csv")
+# electorateOpinion_education = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/education.csv")
+# electorateOpinion_guns = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/guns.csv")
+# electorateOpinion_healthcare = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/healthcare.csv")
+# electorateOpinion_imagration = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/imagration.csv")
+# electorateOpinion_taxes = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/taxes.csv")
+# electorateData_party = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/PartyAfiliation.csv")
+# electorateData_vote = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/electionResults.csv")
+electorateOpinion_abortion = pd.read_csv("/home/jaxson/Inspirit/data/imagration.csv")
+electorateOpinion_crime = pd.read_csv("/home/jaxson/Inspirit/data/crimePolicies.csv")
+electorateOpinion_defenseSpending = pd.read_csv("/home/jaxson/Inspirit/data/defenseSpending.csv")
+electorateOpinion_econemy = pd.read_csv("/home/jaxson/Inspirit/data/ecenomicConfidance.csv")
+electorateOpinion_education = pd.read_csv("/home/jaxson/Inspirit/data/education.csv")
+electorateOpinion_guns = pd.read_csv("/home/jaxson/Inspirit/data/guns.csv")
+electorateOpinion_healthcare = pd.read_csv("/home/jaxson/Inspirit/data/healthcare.csv")
+electorateOpinion_imagration = pd.read_csv("/home/jaxson/Inspirit/data/imagration.csv")
+electorateOpinion_taxes = pd.read_csv("/home/jaxson/Inspirit/data/taxes.csv")
+electorateData_party = pd.read_csv("/home/jaxson/Inspirit/data/PartyAfiliation.csv")
+electorateData_vote = pd.read_csv("/home/jaxson/Inspirit/data/electionResults.csv")
 
 bidenRawList=[]
 trumpRawList=[]
@@ -37,44 +48,82 @@ mcainRawList=[]
 romneyRawList=[]
 mondleRawList=[]
 
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/anderson-reagon.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/biden-trump1.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/biden-trump2.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/biden-trump3.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/bush-clinton-parot1.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/bush-dukakis1.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/bush-dukakis2.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/bush-kerry1.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/bush-kerry2.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/bush-kerry3.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/carter-ford1.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/carter-ford2.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/carter-ford3.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/carter-reagon.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/clinton-bush-parot1.5.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/clinton-bush-parot2.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/clinton-bush-parot0.5.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/clinton-dole1.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/clinton-dole2.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/clinton-trump1.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/clinton-trump2.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/clinton-trump3.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/gore-bush1.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/gore-bush2.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/gore-bush3.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/kenedy-nixon1.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/kenedy-nixon2.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/kenedy-nixon3.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/mcain-obama1.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/mcain-obama2.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/mcain-obama3.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/nixon-kenedy.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/obama-romney1.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/obama-romney2.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/obama-romney3.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/reagan-mondle2.txt",
+    # "/Users/jaxsonpaige/Inspirit/data/speeches/reagon-mondle1.txt",
+
 speeches = [
-    "/Users/jaxsonpaige/Inspirit/data/speeches/anderson-reagon.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/biden-trump1.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/biden-trump2.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/biden-trump3.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/bush-clinton-parot1.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/bush-dukakis1.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/bush-dukakis2.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/bush-kerry1.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/bush-kerry2.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/bush-kerry3.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/carter-ford1.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/carter-ford2.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/carter-ford3.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/carter-reagon.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/clinton-bush-parot1.5.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/clinton-bush-parot2.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/clinton-bush-parot0.5.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/clinton-dole1.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/clinton-dole2.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/clinton-trump1.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/clinton-trump2.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/clinton-trump3.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/gore-bush1.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/gore-bush2.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/gore-bush3.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/kenedy-nixon1.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/kenedy-nixon2.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/kenedy-nixon3.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/mcain-obama1.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/mcain-obama2.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/mcain-obama3.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/nixon-kenedy.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/obama-romney1.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/obama-romney2.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/obama-romney3.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/reagan-mondle2.txt",
-    "/Users/jaxsonpaige/Inspirit/data/speeches/reagon-mondle1.txt",
+    "/home/jaxson/Inspirit/data/speeches/anderson-reagon.txt",
+    "/home/jaxson/Inspirit/data/speeches/biden-trump1.txt",
+    "/home/jaxson/Inspirit/data/speeches/biden-trump2.txt",
+    "/home/jaxson/Inspirit/data/speeches/biden-trump3.txt",
+    "/home/jaxson/Inspirit/data/speeches/bush-clinton-parot1.txt",
+    "/home/jaxson/Inspirit/data/speeches/bush-dukakis1.txt",
+    "/home/jaxson/Inspirit/data/speeches/bush-dukakis2.txt",
+    "/home/jaxson/Inspirit/data/speeches/bush-kerry1.txt",
+    "/home/jaxson/Inspirit/data/speeches/bush-kerry2.txt",
+    "/home/jaxson/Inspirit/data/speeches/bush-kerry3.txt",
+    "/home/jaxson/Inspirit/data/speeches/carter-ford1.txt",
+    "/home/jaxson/Inspirit/data/speeches/carter-ford2.txt",
+    "/home/jaxson/Inspirit/data/speeches/carter-ford3.txt",
+    "/home/jaxson/Inspirit/data/speeches/carter-reagon.txt",
+    "/home/jaxson/Inspirit/data/speeches/clinton-bush-parot1.5.txt",
+    "/home/jaxson/Inspirit/data/speeches/clinton-bush-parot2.txt",
+    "/home/jaxson/Inspirit/data/speeches/clinton-bush-parot0.5.txt",
+    "/home/jaxson/Inspirit/data/speeches/clinton-dole1.txt",
+    "/home/jaxson/Inspirit/data/speeches/clinton-dole2.txt",
+    "/home/jaxson/Inspirit/data/speeches/clinton-trump1.txt",
+    "/home/jaxson/Inspirit/data/speeches/clinton-trump2.txt",
+    "/home/jaxson/Inspirit/data/speeches/clinton-trump3.txt",
+    "/home/jaxson/Inspirit/data/speeches/gore-bush1.txt",
+    "/home/jaxson/Inspirit/data/speeches/gore-bush2.txt",
+    "/home/jaxson/Inspirit/data/speeches/gore-bush3.txt",
+    "/home/jaxson/Inspirit/data/speeches/kenedy-nixon1.txt",
+    "/home/jaxson/Inspirit/data/speeches/kenedy-nixon2.txt",
+    "/home/jaxson/Inspirit/data/speeches/kenedy-nixon3.txt",
+    "/home/jaxson/Inspirit/data/speeches/mcain-obama1.txt",
+    "/home/jaxson/Inspirit/data/speeches/mcain-obama2.txt",
+    "/home/jaxson/Inspirit/data/speeches/mcain-obama3.txt",
+    "/home/jaxson/Inspirit/data/speeches/nixon-kenedy.txt",
+    "/home/jaxson/Inspirit/data/speeches/obama-romney1.txt",
+    "/home/jaxson/Inspirit/data/speeches/obama-romney2.txt",
+    "/home/jaxson/Inspirit/data/speeches/obama-romney3.txt",
+    "/home/jaxson/Inspirit/data/speeches/reagan-mondle2.txt",
+    "/home/jaxson/Inspirit/data/speeches/reagon-mondle1.txt"
 ]
 
 for i in speeches:

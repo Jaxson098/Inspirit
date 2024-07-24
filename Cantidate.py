@@ -37,15 +37,15 @@ class cantidate:
         self.imagration_list = []
         self.defense_list = []
 
-        self.abortion_catagories = ["Legal under any", "Legal only under certain circumstances", "Illedgal in all circumstances", "no opinion"]
-        self.crime_catagories = ["Very satisfied","Somewhat satisfied","Somewhat dissatisfied","Very dissatisfied","No opinion"]
-        self.millitarySpending_catagories = ["Too little", "Too much"]
+        self.abortion_catagories = ["Abortion Legal under any", "Abortion Legal only under certain circumstances", "Abortion Illedgal in all circumstances", "Abortion no opinion"]
+        self.crime_catagories = ["Crime rates Very satisfied","Crime rates Somewhat satisfied","Crime rates Somewhat dissatisfied","Crime rates Very dissatisfied","Crime rates No opinion"]
+        self.millitarySpending_catagories = ["Millitary spending Too little", "Millitary spending Too much"]
         # self.econemy_catagories = []
-        self.education_catagories = ["Completely satisfied","Somewhat satisfied","Somewhat dissatisfied","Completely dissatisfied","No opinion"]
+        self.education_catagories = ["Education Completely satisfied","Education Somewhat satisfied","Education Somewhat dissatisfied","Education Completely dissatisfied","Education No opinion"]
         self.guns_catagories = ["More strict","Less strict","Kept as now","No opinion"]
-        self.healthcare_catagories = ["Yes, government responsibility","No, not government responsibility"]
+        self.healthcare_catagories = ["healthcare governments responsibility","healthcare not governments responsibility"]
         self.imagration_catagories = ["Present level","Increased,Decreased","No opinion"]
-        self.defense_catagories = ["Stronger than needs to be","Not strong enough","About right"]
+        self.defense_catagories = ["defense Stronger than needs to be","defense Not strong enough","defense About right"]
 
         self.abortion_scores = []
         self.crime_scores = []
@@ -140,11 +140,11 @@ class cantidate:
         scores = classifier(raw, self.defense_catagories)
         self.defense_scores = scores
 
-        print(self.abortion_scores)
-        print(self.crime_scores)
-        print(self.millitarySpending_scores)
-        print(self.education_scores)
-        print(self.guns_sentances)
-        print(self.healthcare_scores)
-        print(self.imagration_scores)
-        print(self.defense_scores)
+        print(f"abortion: {self.abortion_scores["labels"]} {self.abortion_scores["scores"]}")
+        print(f"crime: {self.crime_scores["labels"]} {self.crime_scores["scores"]}")
+        print(f"MillitarySpending: {self.millitarySpending_scores["labels"]} {self.millitarySpending_scores["scores"]}")
+        print(f"education: {self.education_scores["labels"]} {self.education_scores["scores"]}")
+        print(f"guns: {self.guns_sentances["labels"]} {self.guns_sentances["scores"]}")
+        print(f"healthcare: {self.healthcare_scores["labels"]} {self.healthcare_scores["scores"]}")
+        print(f"imagration: {self.imagration_scores["labels"]} {self.imagration_scores["scores"]}")
+        print(f"defense: {self.defense_scores["labels"]} {self.defense_scores["scores"]}")                                                                                         
