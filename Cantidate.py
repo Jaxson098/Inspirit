@@ -3,7 +3,7 @@ import OrganizedData
 from transformers import pipeline
 
 class cantidate:
-    def __init__(self, DATAraw, DATArawList):
+    def __init__(self, DATAraw, DATArawList, cantidate_name):
         #POSabortion, POScrime, POSdefenseSpending, POSeconemy, POSeducation, POSguns, POShealthcare, POSimagration, POSnationalSecurity, POStaxes,
         # self.abortion=POSabortion
         # self.defenseSpending=POSdefenseSpending
@@ -14,6 +14,8 @@ class cantidate:
         # self.taxes=POStaxes 
         self.raw=DATAraw
         self.rawList=DATArawList
+
+        self.name = cantidate_name
 
         classifier = pipeline("zero-shot-classification")
         labels = ["abortion","crime","millitary spending", "econemy", "education", "guns", "healthcare", "imagration", "defense"]
@@ -144,7 +146,7 @@ class cantidate:
         print(f"crime: {self.crime_scores["labels"]} {self.crime_scores["scores"]}")
         print(f"MillitarySpending: {self.millitarySpending_scores["labels"]} {self.millitarySpending_scores["scores"]}")
         print(f"education: {self.education_scores["labels"]} {self.education_scores["scores"]}")
-        print(f"guns: {self.guns_sentances["labels"]} {self.guns_sentances["scores"]}")
+        print(f"guns: {self.guns_scores["labels"]} {self.guns_scores["scores"]}")
         print(f"healthcare: {self.healthcare_scores["labels"]} {self.healthcare_scores["scores"]}")
         print(f"imagration: {self.imagration_scores["labels"]} {self.imagration_scores["scores"]}")
         print(f"defense: {self.defense_scores["labels"]} {self.defense_scores["scores"]}")                                                                                         

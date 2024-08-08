@@ -1,117 +1,116 @@
 import Cantidate
 import OrganizedData
 
-biden = Cantidate.cantidate(
-    DATAraw = OrganizedData.bidenRaw,
-    DATArawList = OrganizedData.bidenRawList
-)
-# print(f"crime freq: {biden.cirmeFreq/len(biden.rawList)}")
-# print(f"econemy freq: {biden.healthcareFreq/len(biden.rawList)}")
-# print(f"national security freq: {biden.nationalSecurityFreq/len(biden.rawList)}")
-# print(f"other freq: {biden.otherFreq/len(biden.rawList)}")
+# biden = Cantidate.cantidate(
+#     DATAraw = OrganizedData.bidenRaw,
+#     DATArawList = OrganizedData.bidenRawList,
+#     cantidate_name="biden"
+# )
 
 trump = Cantidate.cantidate(
     DATAraw = OrganizedData.trumpRaw,
-    DATArawList = OrganizedData.trumpRawList
+    DATArawList = OrganizedData.trumpRawList,
+    cantidate_name="trump"
 )
 
-obama = Cantidate.cantidate(
-    DATAraw = OrganizedData.obamaRaw,
-    DATArawList = OrganizedData.obamaRawList
-)
+# obama = Cantidate.cantidate(
+#     DATAraw = OrganizedData.obamaRaw,
+#     DATArawList = OrganizedData.obamaRawList,
+#     cantidate_name="obama"
+# )
 
-reagen = Cantidate.cantidate(
-    DATAraw = OrganizedData.reaganRaw,
-    DATArawList = OrganizedData.reaganRawList
-)
+# reagen = Cantidate.cantidate(
+#     DATAraw = OrganizedData.reaganRaw,
+#     DATArawList = OrganizedData.reaganRawList,
+#     cantidate_name="reagen"
+# )
 
-bush = Cantidate.cantidate(
-    DATAraw = OrganizedData.bushRaw,
-    DATArawList = OrganizedData.bushRawList
-)
+# bush = Cantidate.cantidate(
+#     DATAraw = OrganizedData.bushRaw,
+#     DATArawList = OrganizedData.bushRawList,
+#     cantidate_name="bush"
+# )
 
-dukakis = Cantidate.cantidate(
-    DATAraw = OrganizedData.dukakisRaw,
-    DATArawList = OrganizedData.dukakisRawList
-)
+# dukakis = Cantidate.cantidate(
+#     DATAraw = OrganizedData.dukakisRaw,
+#     DATArawList = OrganizedData.dukakisRawList,
+#     cantidate_name="dukakis"
+# )
 
-kerry = Cantidate.cantidate(
-    DATAraw = OrganizedData.kenedyRaw,
-    DATArawList = OrganizedData.kenedyRawList
-)
+# kerry = Cantidate.cantidate(
+#     DATAraw = OrganizedData.kenedyRaw,
+#     DATArawList = OrganizedData.kenedyRawList,
+#     cantidate_name="kerry"
+# )
 
-clinton = Cantidate.cantidate(
-    DATAraw = OrganizedData.clintonRaw,
-    DATArawList = OrganizedData.clintonRawList
-)
+# clinton = Cantidate.cantidate(
+#     DATAraw = OrganizedData.clintonRaw,
+#     DATArawList = OrganizedData.clintonRawList,
+#     cantidate_name="clinton"
+# )
 
 Hclinton = Cantidate.cantidate(
     DATAraw = OrganizedData.HclintonRaw,
-    DATArawList = OrganizedData.HclintonRawList
+    DATArawList = OrganizedData.HclintonRawList,
+    cantidate_name="Hclinton"
 )
 
-perot = Cantidate.cantidate(
-    DATAraw = OrganizedData.perotRaw,
-    DATArawList = OrganizedData.perotRawList
-)
+# perot = Cantidate.cantidate(
+#     DATAraw = OrganizedData.perotRaw,
+#     DATArawList = OrganizedData.perotRawList,
+#     cantidate_name="perot"
+# )
 
-carter = Cantidate.cantidate(
-    DATAraw = OrganizedData.carterRaw,
-    DATArawList = OrganizedData.carterRawList
-)
+# carter = Cantidate.cantidate(
+#     DATAraw = OrganizedData.carterRaw,
+#     DATArawList = OrganizedData.carterRawList,
+#     cantidate_name="carter"
+# )
 
-ford = Cantidate.cantidate(
-    DATAraw = OrganizedData.fordRaw,
-    DATArawList = OrganizedData.fordRawList
-)
+# ford = Cantidate.cantidate(
+#     DATAraw = OrganizedData.fordRaw,
+#     DATArawList = OrganizedData.fordRawList,
+#     cantidate_name="ford"
+# )
 
-dole = Cantidate.cantidate(
-    DATAraw = OrganizedData.doleRaw,
-    DATArawList = OrganizedData.doleRawList
-)
+# dole = Cantidate.cantidate(
+#     DATAraw = OrganizedData.doleRaw,
+#     DATArawList = OrganizedData.doleRawList,
+#     cantidate_name="dole"
+# )
 
-gore = Cantidate.cantidate(
-    DATAraw = OrganizedData.goreRaw,
-    DATArawList = OrganizedData.goreRawList
-)
+# gore = Cantidate.cantidate(
+#     DATAraw = OrganizedData.goreRaw,
+#     DATArawList = OrganizedData.goreRawList,
+#     cantidate_name="gore"
+# )
 
-kenedy = Cantidate.cantidate(
-    DATAraw = OrganizedData.kenedyRaw,
-    DATArawList = OrganizedData.kenedyRawList
-)
+# kenedy = Cantidate.cantidate(
+#     DATAraw = OrganizedData.kenedyRaw,
+#     DATArawList = OrganizedData.kenedyRawList,
+#     cantidate_name="kenedy"
+# )
 
-nixon = Cantidate.cantidate(
-    DATAraw = OrganizedData.nixonRaw,
-    DATArawList = OrganizedData.nixonRawList
-)
+# nixon = Cantidate.cantidate(
+#     DATAraw = OrganizedData.nixonRaw,
+#     DATArawList = OrganizedData.nixonRawList,
+#     cantidate_name="nixon"
+# )
 
-mccain = Cantidate.cantidate(
-    DATAraw = OrganizedData.mcainRaw,
-    DATArawList = OrganizedData.mcainRawList
-)
+# mccain = Cantidate.cantidate(
+#     DATAraw = OrganizedData.mcainRaw,
+#     DATArawList = OrganizedData.mcainRawList,
+#     cantidate_name="mccain"
+# )
 
-romney = Cantidate.cantidate(
-    DATAraw = OrganizedData.romneyRaw,
-    DATArawList = OrganizedData.romneyRawList
-)
+# romney = Cantidate.cantidate(
+#     DATAraw = OrganizedData.romneyRaw,
+#     DATArawList = OrganizedData.romneyRawList,
+#     cantidate_name="romney"
+# )
 
-mondle = Cantidate.cantidate(
-    DATAraw = OrganizedData.mondleRaw,
-    DATArawList = OrganizedData.mondleRawList
-)
-
-#not enough data + he's independant and recived 6.6% of the vote so it dose not matter
-# anderson = Cantidate.cantidate(
-#     POSabortion = "legal under certain",
-#     POScrime = "placeholder",
-#     POSdefenseSpending = "less",
-#     POSeconemy ="placeholder",
-#     POSeducation = "",
-#     POSguns = "",
-#     POShealthcare = "placeholder",
-#     POSimagration = "",
-#     POSnationalSecurity ="placeholder",
-#     POStaxes = "",
-#     DATAraw = OrganizedData.andersonRaw,
-#     DATArawList = OrganizedData.andersonRawList
+# mondle = Cantidate.cantidate(
+#     DATAraw = OrganizedData.mondleRaw,
+#     DATArawList = OrganizedData.mondleRawList,
+#     cantidate_name='mondle'
 # )

@@ -25,7 +25,7 @@ electorateOpinion_healthcare = pd.read_csv("/home/jaxson/Inspirit/data/healthcar
 electorateOpinion_imagration = pd.read_csv("/home/jaxson/Inspirit/data/imagration.csv")
 electorateOpinion_taxes = pd.read_csv("/home/jaxson/Inspirit/data/taxes.csv")
 electorateData_party = pd.read_csv("/home/jaxson/Inspirit/data/PartyAfiliation.csv")
-electorateData_vote = pd.read_csv("/home/jaxson/Inspirit/data/electionResults.csv")
+electorateOpinion_defense = pd.read_csv("/home/jaxson/Inspirit/data/nationalSecurity.csv")
 
 bidenRawList=[]
 trumpRawList=[]
