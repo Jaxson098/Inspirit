@@ -61,14 +61,14 @@ class Election:
         
         self.year = election_year
 
-        abortionPoll = getPollData(self,'/home/jaxson/Inspirit/data/abortion.csv', year=self.year)
-        crimePoll = getPollData(self,'/home/jaxson/Inspirit/data/crimePolicies.csv', year=self.year)
-        defenseSpendingPoll = getPollData(self,'/home/jaxson/Inspirit/data/defenseSpending.csv', year=self.year)
-        educationPoll = getPollData(self,'/home/jaxson/Inspirit/data/education.csv', year=self.year)
-        gunsPoll = getPollData(self,'/home/jaxson/Inspirit/data/guns.csv', year=self.year)
-        healthcarePoll = getPollData(self,'/home/jaxson/Inspirit/data/healthcare.csv', year=self.year)
-        imagrationPoll = getPollData(self,'/home/jaxson/Inspirit/data/imagration.csv', year=self.year)
-        securityPoll = getPollData(self,'/home/jaxson/Inspirit/data/nationalSecurity.csv', year=self.year)
+        abortionPoll = getPollData('/home/jaxson/Inspirit/data/abortion.csv', year=self.year)
+        crimePoll = getPollData('/home/jaxson/Inspirit/data/crimePolicies.csv', year=self.year)
+        defenseSpendingPoll = getPollData('/home/jaxson/Inspirit/data/defenseSpending.csv', year=self.year)
+        educationPoll = getPollData('/home/jaxson/Inspirit/data/education.csv', year=self.year)
+        gunsPoll = getPollData('/home/jaxson/Inspirit/data/guns.csv', year=self.year)
+        healthcarePoll = getPollData('/home/jaxson/Inspirit/data/healthcare.csv', year=self.year)
+        imagrationPoll = getPollData('/home/jaxson/Inspirit/data/imagration.csv', year=self.year)
+        securityPoll = getPollData('/home/jaxson/Inspirit/data/nationalSecurity.csv', year=self.year)
 
         format(abortion_dict_1, abortion_catagories, cantidate_1.abortion_scores["scores"])
         format(crime_dict_1, crime_catagories, cantidate_1.crime_scores["scores"])
