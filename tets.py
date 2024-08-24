@@ -1,13 +1,30 @@
-import pandas as pd
+import csv
 
-name = {'name': 'john', 'name2': 'bill'}
-str(name)
-age = "30"
-country = "USA"
+def getPollData(path, year):
+    with open(path, mode='r') as file:
+        reader = csv.reader(file)
+        rows = []
+            
+        for row in reader:
+            if str(year) in row[0]: 
+                rows.append(row)
+    return rows[-1]
 
-data = {'Name': name, 'Age': age, 'Country': country}
-df = pd.DataFrame([data])
-df.to_csv('output.csv', index=False, header=False)
+abortionPoll = getPollData('/home/jaxson/Inspirit/data/abortion.csv', year=2016)
+print(abortionPoll)
+
+
+
+# import pandas as pd
+
+# name = {'name': 'john', 'name2': 'bill'}
+# str(name)
+# age = "30"
+# country = "USA"
+
+# data = {'Name': name, 'Age': age, 'Country': country}
+# df = pd.DataFrame([data])
+# df.to_csv('output.csv', index=False, header=False)
 
 
 # classifier = pipeline("zero-shot-classification")

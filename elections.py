@@ -31,12 +31,12 @@ defense_dict_2 = {label: [] for label in defense_catagories}
 
 abortionPoll_dict = {label: [] for label in abortion_catagories}
 crimePoll_dict = {label: [] for label in crime_catagories}
-defenseSpendingPoll_dict = {label: [] for label in millitarySpending_catagories}
+millitarySpendingPoll_dict = {label: [] for label in millitarySpending_catagories}
 educationPoll_dict = {label: [] for label in education_catagories}
 gunsPoll_dict = {label: [] for label in guns_catagories}
 healthcarePoll_dict = {label: [] for label in healthcare_catagories}
 imagrationPoll_dict = {label: [] for label in imagration_catagories}
-securityPoll_dict = {label: [] for label in defense_catagories}
+defensePoll_dict = {label: [] for label in defense_catagories}
 
 def getPollData(path, year):
     with open(path, mode='r') as file:
@@ -44,7 +44,7 @@ def getPollData(path, year):
         rows = []
             
         for row in reader:
-            if year in row[0]: 
+            if str(year) in row[0]: 
                 rows.append(row)
     return rows[-1]
 
@@ -57,18 +57,18 @@ def format(dict, labels, scores):
     dict[labels[i]].append(scores[i])
 
 class Election:
-    def __init__(self, election_year, cantidate_1, cantidate_2):
+    def __init__(self, election_year, cantidate_1, cantidate_2, csvName):
         
         self.year = election_year
 
         abortionPoll = getPollData('/home/jaxson/Inspirit/data/abortion.csv', year=self.year)
         crimePoll = getPollData('/home/jaxson/Inspirit/data/crimePolicies.csv', year=self.year)
-        defenseSpendingPoll = getPollData('/home/jaxson/Inspirit/data/defenseSpending.csv', year=self.year)
+        millitarySpendingPoll = getPollData('/home/jaxson/Inspirit/data/defenseSpending.csv', year=self.year)
         educationPoll = getPollData('/home/jaxson/Inspirit/data/education.csv', year=self.year)
         gunsPoll = getPollData('/home/jaxson/Inspirit/data/guns.csv', year=self.year)
         healthcarePoll = getPollData('/home/jaxson/Inspirit/data/healthcare.csv', year=self.year)
         imagrationPoll = getPollData('/home/jaxson/Inspirit/data/imagration.csv', year=self.year)
-        securityPoll = getPollData('/home/jaxson/Inspirit/data/nationalSecurity.csv', year=self.year)
+        defensePoll = getPollData('/home/jaxson/Inspirit/data/nationalSecurity.csv', year=self.year)
 
         format(abortion_dict_1, abortion_catagories, cantidate_1.abortion_scores["scores"])
         format(crime_dict_1, crime_catagories, cantidate_1.crime_scores["scores"])
@@ -88,14 +88,14 @@ class Election:
         format(imagration_dict_2, imagration_catagories, cantidate_2.imagration_scores["scores"])
         format(defense_dict_2, defense_catagories, cantidate_2.defense_scores["scores"])
 
-        format(abortionPoll_dict, abortion_catagories, cantidate_2.abortion_scores["scores"])
-        format(crimePoll_dict, crime_catagories, cantidate_2.crime_scores["scores"])
-        format(securityPoll_dict, millitarySpending_catagories, cantidate_2.millitarySpending_scores["scores"])
-        format(educationPoll_dict, education_catagories, cantidate_2.education_scores["scores"])
-        format(gunsPoll_dict, guns_catagories, cantidate_2.guns_scores["scores"])
-        format(healthcarePoll_dict, healthcare_catagories, cantidate_2.healthcare_scores["scores"])
-        format(imagrationPoll_dict, imagration_catagories, cantidate_2.imagration_scores["scores"])
-        format(defenseSpendingPoll_dict, defense_catagories, cantidate_2.defense_scores["scores"])
+        format(abortionPoll_dict, abortion_catagories, abortionPoll)
+        format(crimePoll_dict, crime_catagories, crimePoll)
+        format(millitarySpendingPoll_dict, millitarySpending_catagories, millitarySpendingPoll)
+        format(educationPoll_dict, education_catagories, educationPoll)
+        format(gunsPoll_dict, guns_catagories, gunsPoll)
+        format(healthcarePoll_dict, healthcare_catagories, healthcarePoll)
+        format(imagrationPoll_dict, imagration_catagories, imagrationPoll)
+        format(defensePoll_dict, defense_catagories, defensePoll)
 
         str(abortion_dict_1)
         str(crime_dict_1)
@@ -117,27 +117,30 @@ class Election:
 
         str(abortionPoll_dict)
         str(crimePoll_dict)
-        str(securityPoll_dict)
+        str(millitarySpendingPoll_dict)
         str(educationPoll_dict)
         str(gunsPoll_dict)
         str(healthcarePoll_dict)
         str(imagrationPoll_dict)
-        str(defenseSpendingPoll_dict)
+        str(defensePoll_dict)
 
         finalData = {'year': self.year, 'can1': cantidate_1.name, 'can2': cantidate_2.name, 
                      'can1 abortion': abortion_dict_1, 'can2 abortion:': abortion_dict_2, 'poll abortion': abortionPoll_dict,
                      'can1 crime': crime_dict_1, 'can2 crime:': crime_dict_2, 'poll crime': crimePoll_dict,
-                     'can1 millitary spending': millitarySpending_dict_1, 'can2 millitary spending:': millitarySpending_dict_2, 'poll millitary spending': defenseSpendingPoll_dict,
+                     'can1 millitary spending': millitarySpending_dict_1, 'can2 millitary spending:': millitarySpending_dict_2, 'poll millitary spending': millitarySpendingPoll_dict,
                      'can1 education': education_dict_1, 'can2 education:': education_dict_2, 'poll education': educationPoll_dict,
                      'can1 guns': guns_dict_1, 'can2 guns:': guns_dict_2, 'poll guns': gunsPoll_dict,
                      'can1 healthcare': healthcare_dict_1, 'can2 healthcare:': healthcare_dict_2, 'poll healthcare': healthcarePoll_dict,
                      'can1 imagration': imagration_dict_1, 'can2 imagration:': imagration_dict_1, 'poll imagration': imagrationPoll_dict,
-                     'can1 defense': defense_dict_1, 'can2 defense:': defense_dict_2, 'poll defense': securityPoll_dict
+                     'can1 defense': defense_dict_1, 'can2 defense:': defense_dict_2, 'poll defense': defensePoll_dict
                      }
         
         df = pd.DataFrame([finalData])
-        df.to_csv('election.csv', index=False, header=False)  
+        df.to_csv(csvName, index=False, header=False)  
 
 
 
-Election('2016', cantidatesData.Hclinton, cantidatesData.trump)
+# Election('2016', cantidatesData.Hclinton, cantidatesData.trump)
+# Election('2020', cantidatesData.biden, cantidatesData.trump, '2020Elec.csv')
+Election('2012', cantidatesData.obama, cantidatesData.romney, '2012Elec.csv')
+# Election('2004', cantidatesData.obama, cantidatesData.mccain, '2004Elec.csv')   

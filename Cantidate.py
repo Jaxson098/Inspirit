@@ -12,13 +12,19 @@ class cantidate:
         # self.healthcare=POShealthcare 
         # self.imagration=POSimagration 
         # self.taxes=POStaxes 
+
+        #not used
         self.raw=DATAraw
+
+        #the data
         self.rawList=DATArawList
+        print(f"raw list in cantidate.py: {self.rawList}")
+        print("\n")
 
         self.name = cantidate_name
 
         classifier = pipeline("zero-shot-classification")
-        labels = ["abortion","crime","millitary spending", "econemy", "education", "guns", "healthcare", "imagration", "defense"]
+        labels = ["abortion","crime","millitary spending", "econemy", "education", "guns", "healthcare", "imagration", "defense", "other"]
 
         self.abortion_sentances = []
         self.crime_sentances = []
@@ -58,45 +64,80 @@ class cantidate:
         self.imagration_scores = []
         self.defense_scores = []
 
+        print(f"\ncantidate: {self.name}\n")
+
         for i in self.rawList:
+            # print(f"sentance being catagorized: {i}")
+            # print("\n")
             result = classifier(i,labels)
             if result["labels"][0] == "abortion":
                 self.abortion_sentances.append(i)
+                # print(f"deemed as abortion")
+                # print("\n")
+                # print("_______________________________")
 
             if result["labels"][0] == "crime":
                 self.crime_sentances.append(i)
+                # print(f"deemed as crime")
+                # print("\n")
+                # print("_______________________________")
 
             if result["labels"][0] == "millitary spending":
                 self.millitarySpending_sentances.append(i)
-
+                # print(f"deemed as millitary spending")
+                # print("\n")
+                # print("_______________________________")
             # if result["labels"][0] == "econemy":
             #     self.econemy_sentances.append(i)
 
             if result["labels"][0] == "education":
                 self.education_sentances.append(i)
+                # print(f"deemed as education")
+                # print("\n")
+                # print("_______________________________")
 
             if result["labels"][0] == "guns":
                 self.guns_sentances.append(i)
+                # print(f"deemed as guns")
+                # print("\n")
+                # print("_______________________________")
 
             if result["labels"][0] == "healthcare":
                 self.healthcare_sentances.append(i)
+                # print(f"deemed as healthcare")
+                # print("\n")
+                # print("_______________________________")
 
-            if result["labels"][0] == "imagration":
+            if result["labels"][0] == "imagration":   
                 self.imagration_sentances.append(i)
+                # print(f"deemed as imagration")
+                # print("\n")
+                # print("_______________________________")
 
             if result["labels"][0] == "defense":
                 self.defense_sentances.append(i)
+                # print(f"deemed as education")
+                # print("\n")
+                # print("_______________________________")
 
+            # if result["labels"][0] == "other":
+                # print(f"deemed as other. not apending any list ")
+                # print("\n")
+                # print("_______________________________")
+            print(f"\nabortion sentances: {self.abortion_sentances}\n")
         for i in self.abortion_sentances:
             self.abortion_list.append(i)
+            print(f"\nabortion list: {self.abortion_list}\n")
+        print(f"\nfinal abortion list: {self.abortion_list}\n")
         raw =' '.join(self.abortion_list)
+        print(f"\nraw: {raw}\n")
         scores = classifier(raw, self.abortion_catagories)
         self.abortion_scores = scores
 
         for i in self.crime_sentances:
             self.crime_list.append(i)
         raw =' '.join(self.crime_list)
-        scores = classifier(raw, self.abortion_catagories)
+        scores = classifier(raw, self.crime_catagories)
         self.crime_scores = scores
 
         for i in self.millitarySpending_sentances:
@@ -141,12 +182,12 @@ class cantidate:
         raw =' '.join(self.defense_list)
         scores = classifier(raw, self.defense_catagories)
         self.defense_scores = scores
-
-        print(f"abortion: {self.abortion_scores["labels"]} {self.abortion_scores["scores"]}")
-        print(f"crime: {self.crime_scores["labels"]} {self.crime_scores["scores"]}")
-        print(f"MillitarySpending: {self.millitarySpending_scores["labels"]} {self.millitarySpending_scores["scores"]}")
-        print(f"education: {self.education_scores["labels"]} {self.education_scores["scores"]}")
-        print(f"guns: {self.guns_scores["labels"]} {self.guns_scores["scores"]}")
-        print(f"healthcare: {self.healthcare_scores["labels"]} {self.healthcare_scores["scores"]}")
-        print(f"imagration: {self.imagration_scores["labels"]} {self.imagration_scores["scores"]}")
-        print(f"defense: {self.defense_scores["labels"]} {self.defense_scores["scores"]}")                                                                                         
+        # print(f"name: {self.name}")
+        # print(f"abortion: {self.abortion_scores["labels"]} {self.abortion_scores["scores"]}")
+        # print(f"crime: {self.crime_scores["labels"]} {self.crime_scores["scores"]}")
+        # print(f"MillitarySpending: {self.millitarySpending_scores["labels"]} {self.millitarySpending_scores["scores"]}")
+        # print(f"education: {self.education_scores["labels"]} {self.education_scores["scores"]}")
+        # print(f"guns: {self.guns_scores["labels"]} {self.guns_scores["scores"]}")
+        # print(f"healthcare: {self.healthcare_scores["labels"]} {self.healthcare_scores["scores"]}")
+        # print(f"imagration: {self.imagration_scores["labels"]} {self.imagration_scores["scores"]}")
+        # print(f"defense: {self.defense_scores["labels"]} {self.defense_scores["scores"]}")                                                                                         

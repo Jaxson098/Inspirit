@@ -172,6 +172,7 @@ for i in speeches:
             if "MONDLE:" in section:
                 mondleRawList.append(section)
 # print(f"bidenrawlist: {bidenRawList}")
+# print(obamaRawList)
 
 bidenRaw=' '.join(bidenRawList)
 trumpRaw=' '.join(trumpRawList)
@@ -193,6 +194,8 @@ nixonRaw=' '.join(nixonRawList)
 mcainRaw=' '.join(mcainRawList)
 romneyRaw=' '.join(romneyRawList)
 mondleRaw=' '.join(mondleRawList)
+# print(obamaRawList)
+
 
 # print(bidenRaw)
 
