@@ -1,21 +1,14 @@
 import csv
 
-def getPollData(path, year):
-    with open(path, mode='r') as file:
-        reader = csv.reader(file)
-        rows = []
-            
-        for row in reader:
-            if str(year) in row[0]: 
-                rows.append(row)
-    return rows[-1]
+# Create a sample list of values
+data = ['10', 'a', 'b', 'c', 'd']
 
-abortionPoll = getPollData('/home/jaxson/Inspirit/data/abortion.csv', year=2016)
-print(abortionPoll)
+# Open the file in write mode
+with open('./testcsv.csv', 'w', newline='', encoding='utf-8') as csvfile:
+    writer = csv.writer(csvfile, delimiter=',', quotechar='"')
+    
+    writer.writerow(data)
 
-
-
-# import pandas as pd
 
 # name = {'name': 'john', 'name2': 'bill'}
 # str(name)
