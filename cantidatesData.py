@@ -7,17 +7,17 @@ import OrganizedData
 #     cantidate_name="biden"
 # )
 
-trump = Cantidate.cantidate(
-    DATAraw = OrganizedData.trumpRaw,
-    DATArawList = OrganizedData.trumpRawList,
-    cantidate_name="trump"
-)
-
-# obama = Cantidate.cantidate(
-#     DATAraw = OrganizedData.obamaRaw,
-#     DATArawList = OrganizedData.obamaRawList,
-#     cantidate_name="obama"
+# trump = Cantidate.cantidate(
+#     DATAraw = OrganizedData.trumpRaw,
+#     DATArawList = OrganizedData.trumpRawList,
+#     cantidate_name="trump"
 # )
+
+obama = Cantidate.cantidate(
+    DATAraw = OrganizedData.obamaRaw,
+    DATArawList = OrganizedData.obamaRawList,
+    cantidate_name="obama"
+)
 
 # reagen = Cantidate.cantidate(
 #     DATAraw = OrganizedData.reaganRaw,
@@ -49,11 +49,11 @@ trump = Cantidate.cantidate(
 #     cantidate_name="clinton"
 # )
 
-Hclinton = Cantidate.cantidate(
-    DATAraw = OrganizedData.HclintonRaw,
-    DATArawList = OrganizedData.HclintonRawList,
-    cantidate_name="Hclinton"
-)
+# Hclinton = Cantidate.cantidate(
+#     DATAraw = OrganizedData.HclintonRaw,
+#     DATArawList = OrganizedData.HclintonRawList,
+#     cantidate_name="Hclinton"
+# )
 
 # perot = Cantidate.cantidate(
 #     DATAraw = OrganizedData.perotRaw,
@@ -97,11 +97,11 @@ Hclinton = Cantidate.cantidate(
 #     cantidate_name="nixon"
 # )
 
-# mccain = Cantidate.cantidate(
-#     DATAraw = OrganizedData.mcainRaw,
-#     DATArawList = OrganizedData.mcainRawList,
-#     cantidate_name="mccain"
-# )
+mccain = Cantidate.cantidate(
+    DATAraw = OrganizedData.mcainRaw,
+    DATArawList = OrganizedData.mcainRawList,
+    cantidate_name="mccain"
+)
 
 # romney = Cantidate.cantidate(
 #     DATAraw = OrganizedData.romneyRaw,

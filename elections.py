@@ -176,8 +176,7 @@ class Election:
         # df.to_csv(csvName, index=False, header=False)  
 
 
-
-Election('2016', cantidatesData.Hclinton, cantidatesData.trump)
 # Election('2020', cantidatesData.biden, cantidatesData.trump)
-# Election('2012', cantidatesData.obama, cantidatesData.romney, '2012Elec.csv')
-# Election('2004', cantidatesData.obama, cantidatesData.mccain, '2004Elec.csv')   
+# Election('2016', cantidatesData.Hclinton, cantidatesData.trump)
+# Election('2012', cantidatesData.obama, cantidatesData.romney)
+Election('2004', cantidatesData.obama, cantidatesData.mccain)   
