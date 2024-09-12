@@ -3,7 +3,7 @@ import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import regex as re
 from transformers import pipeline
-# nltk.download('vader_lexicon')
+
 # electorateOpinion_abortion = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/imagration.csv")
 # electorateOpinion_crime = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/crimePolicies.csv")
 # electorateOpinion_defenseSpending = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/defenseSpending.csv")
@@ -15,6 +15,7 @@ from transformers import pipeline
 # electorateOpinion_taxes = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/taxes.csv")
 # electorateData_party = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/PartyAfiliation.csv")
 # electorateData_vote = pd.read_csv("/Users/jaxsonpaige/Inspirit/data/electionResults.csv")
+
 electorateOpinion_abortion = pd.read_csv("/home/jaxson/Inspirit/data/imagration.csv")
 electorateOpinion_crime = pd.read_csv("/home/jaxson/Inspirit/data/crimePolicies.csv")
 electorateOpinion_defenseSpending = pd.read_csv("/home/jaxson/Inspirit/data/defenseSpending.csv")

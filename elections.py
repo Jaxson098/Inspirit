@@ -2,41 +2,14 @@ import pandas as pd
 import csv
 import cantidatesData
 
-abortion_catagories = ["Abortion Legal under any", "Abortion Legal only under certain circumstances", "Abortion Illedgal in all circumstances", "Abortion no opinion","other"]
-crime_catagories = ["Crime rates Very satisfied","Crime rates Somewhat satisfied","Crime rates Somewhat dissatisfied","Crime rates Very dissatisfied","Crime rates No opinion","other"]
-millitarySpending_catagories = ["Millitary spending Too little", "Millitary spending Too much","other"]
-education_catagories = ["Education Completely satisfied","Education Somewhat satisfied","Education Somewhat dissatisfied","Education Completely dissatisfied","Education No opinion","other"]
-guns_catagories = ["More strict","Less strict","Kept as now","No opinion","other"]
-healthcare_catagories = ["healthcare governments responsibility","healthcare not governments responsibility","other"]
-imagration_catagories = ["Present level","Increased,Decreased","No opinion","other"]
-defense_catagories = ["defense Stronger than needs to be","defense Not strong enough","defense About right","other"]
-
-# abortion_dict_1 = {label: [] for label in abortion_catagories}
-# crime_dict_1 = {label: [] for label in crime_catagories}
-# millitarySpending_dict_1 = {label: [] for label in millitarySpending_catagories}
-# education_dict_1 = {label: [] for label in education_catagories}
-# guns_dict_1 = {label: [] for label in guns_catagories}
-# healthcare_dict_1 = {label: [] for label in healthcare_catagories}
-# imagration_dict_1 = {label: [] for label in imagration_catagories}
-# defense_dict_1 = {label: [] for label in defense_catagories}
-
-# abortion_dict_2 = {label: [] for label in abortion_catagories}
-# crime_dict_2 = {label: [] for label in crime_catagories}
-# millitarySpending_dict_2 = {label: [] for label in millitarySpending_catagories}
-# education_dict_2 = {label: [] for label in education_catagories}
-# guns_dict_2 = {label: [] for label in guns_catagories}
-# healthcare_dict_2 = {label: [] for label in healthcare_catagories}
-# imagration_dict_2 = {label: [] for label in imagration_catagories}
-# defense_dict_2 = {label: [] for label in defense_catagories}
-
-# abortionPoll_dict = {label: [] for label in abortion_catagories}
-# crimePoll_dict = {label: [] for label in crime_catagories}
-# millitarySpendingPoll_dict = {label: [] for label in millitarySpending_catagories}
-# educationPoll_dict = {label: [] for label in education_catagories}
-# gunsPoll_dict = {label: [] for label in guns_catagories}
-# healthcarePoll_dict = {label: [] for label in healthcare_catagories}
-# imagrationPoll_dict = {label: [] for label in imagration_catagories}
-# defensePoll_dict = {label: [] for label in defense_catagories}
+abortion_catagories = ["Abortion should always Legal", "Abortion should be sometimes legal", "Abortion should be illegal", "no opinion about abortion"]
+crime_catagories = ["Very satisfied with Crime","Somewhat satisfied with crime","Somewhat dissatisfied with crime","Very dissatisfied with crime","No opinion about crime"]
+millitarySpending_catagories = ["Too little Millitary spending", "Too much Millitary spending", "no opinion about Millitary spending"]
+education_catagories = ["very satisfied with education","Somewhat satisfied with Education","Somewhat dissatisfied with Education","Completely dissatisfied with Education","No opinion about Education"]
+guns_catagories = ["More strict gun restrictions","Less strict gun restrictions","gun restrictions Kept as now","No opinion about gun restrictions"]
+healthcare_catagories = ["healthcare is governments responsibility","healthcare is not governments responsibility", "no opinion about healthcare"]
+imagration_catagories = ["imagration should be kept at Present level","imagration should be Increased","imagration should be Decreased","No opinion about imagration"]
+defense_catagories = ["national security Stronger than needs to be","national security Not strong enough","national security About right","no opinion about national security"]
 
 def getPollData(path, year):
     with open(path, mode='r') as file:
@@ -52,27 +25,17 @@ def getPollData(path, year):
     labelIndex = yearData.index(maxValue) -1
     return f"{maxValue} {labelIndex}"
 
-
-# abortionPoll = getPollData('/home/jaxson/Inspirit/data/abortion.csv', year='2016')
-# print(abortionPoll)
-
-def format(dict, labels, scores):
-  for i in range(len(labels)):
-    dict[labels[i]].append(scores[i])
-
 class Election:
     def __init__(self, election_year, cantidate_1, cantidate_2):
-        
-        self.year = election_year
 
-        abortionPoll = getPollData('/home/jaxson/Inspirit/data/abortion.csv', year=self.year)
-        crimePoll = getPollData('/home/jaxson/Inspirit/data/crimePolicies.csv', year=self.year)
-        millitarySpendingPoll = getPollData('/home/jaxson/Inspirit/data/defenseSpending.csv', year=self.year)
-        educationPoll = getPollData('/home/jaxson/Inspirit/data/education.csv', year=self.year)
-        gunsPoll = getPollData('/home/jaxson/Inspirit/data/guns.csv', year=self.year)
-        healthcarePoll = getPollData('/home/jaxson/Inspirit/data/healthcare.csv', year=self.year)
-        imagrationPoll = getPollData('/home/jaxson/Inspirit/data/imagration.csv', year=self.year)
-        defensePoll = getPollData('/home/jaxson/Inspirit/data/nationalSecurity.csv', year=self.year)
+        abortion_poll_percentage = getPollData('/home/jaxson/Inspirit/data/abortion.csv', year=self.year)
+        crime_poll_percentage = getPollData('/home/jaxson/Inspirit/data/crimePolicies.csv', year=self.year)
+        millitarySpending_poll_percentage = getPollData('/home/jaxson/Inspirit/data/defenseSpending.csv', year=self.year)
+        education_poll_percentage = getPollData('/home/jaxson/Inspirit/data/education.csv', year=self.year)
+        guns_poll_percentage = getPollData('/home/jaxson/Inspirit/data/guns.csv', year=self.year)
+        healthcare_poll_percentage = getPollData('/home/jaxson/Inspirit/data/healthcare.csv', year=self.year)
+        imagration_poll_percentage = getPollData('/home/jaxson/Inspirit/data/imagration.csv', year=self.year)
+        defense_poll_percentage = getPollData('/home/jaxson/Inspirit/data/nationalSecurity.csv', year=self.year)
 
         can1Abortion = abortion_catagories.index(cantidate_1.abortion_scores["labels"][0])
         can1Crime = crime_catagories.index(cantidate_1.crime_scores["labels"][0])
@@ -179,4 +142,4 @@ class Election:
 # Election('2020', cantidatesData.biden, cantidatesData.trump)
 # Election('2016', cantidatesData.Hclinton, cantidatesData.trump)
 # Election('2012', cantidatesData.obama, cantidatesData.romney)
-Election('2004', cantidatesData.obama, cantidatesData.mccain)   
+# Election('2004', cantidatesData.obama, cantidatesData.mccain)   
