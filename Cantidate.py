@@ -54,34 +54,34 @@ class cantidate:
         scoring(immigration_txt,immigration_catagories,immigration_labels)
         scoring(national_security_txt,national_security_catagories,national_security_labels)
 
-        raw =' '.join(self.abortion_sentances)
-        scores = classifier(raw, self.abortion_catagories)
-        self.abortion_scores = scores
+        # raw =' '.join(self.abortion_sentances)
+        # scores = classifier(raw, self.abortion_catagories)
+        # self.abortion_scores = scores
 
-        raw =' '.join(self.crime_sentances)
-        scores = classifier(raw, self.crime_catagories)
-        self.crime_scores = scores
+        # raw =' '.join(self.crime_sentances)
+        # scores = classifier(raw, self.crime_catagories)
+        # self.crime_scores = scores
 
-        raw =' '.join(self.millitarySpending_sentances)
-        scores = classifier(raw, self.millitarySpending_catagories)
-        self.millitarySpending_scores = scores
+        # raw =' '.join(self.millitarySpending_sentances)
+        # scores = classifier(raw, self.millitarySpending_catagories)
+        # self.millitarySpending_scores = scores
 
-        raw =' '.join(self.education_sentances)
-        scores = classifier(raw, self.education_catagories)
-        self.education_scores = scores
+        # raw =' '.join(self.education_sentances)
+        # scores = classifier(raw, self.education_catagories)
+        # self.education_scores = scores
 
-        raw =' '.join(self.guns_sentances)
-        scores = classifier(raw, self.guns_catagories)
-        self.guns_scores = scores
+        # raw =' '.join(self.guns_sentances)
+        # scores = classifier(raw, self.guns_catagories)
+        # self.guns_scores = scores
 
-        raw =' '.join(self.healthcare_sentances)
-        scores = classifier(raw, self.healthcare_catagories)
-        self.healthcare_scores = scores
+        # raw =' '.join(self.healthcare_sentances)
+        # scores = classifier(raw, self.healthcare_catagories)
+        # self.healthcare_scores = scores
 
-        raw =' '.join(self.imagration_sentances)
-        scores = classifier(raw, self.imagration_catagories)
-        self.imagration_scores = scores
+        # raw =' '.join(self.imagration_sentances)
+        # scores = classifier(raw, self.imagration_catagories)
+        # self.imagration_scores = scores
 
-        raw =' '.join(self.defense_sentances)
-        scores = classifier(raw, self.defense_catagories)
-        self.defense_scores = scores
+        # raw =' '.join(self.defense_sentances)
+        # scores = classifier(raw, self.defense_catagories)
+        # self.defense_scores = scores

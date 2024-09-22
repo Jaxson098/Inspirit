@@ -49,7 +49,7 @@ getP()
 
 for key, value in sentances.items():
 
-    with open(f"/home/jaxson/Inspirit/rawText/ford/{key}.txt", 'w') as file:
+    with open(f"/home/jaxson/Inspirit/rawText/trump/{key}.txt", 'w') as file:
         for item in value:
             file.write(f"{item}\n")
 
