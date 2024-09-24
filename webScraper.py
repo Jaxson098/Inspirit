@@ -112,8 +112,8 @@ class nonPrezScrape:
 
 
 # scrape("clinton","200298")
-nonPrezScrape("Hclinton","3A200317")
+# nonPrezScrape("Hclinton","3A200317")
 # scrape("carter","200295")
-nonPrezScrape("dole","3A200312")
-nonPrezScrape("mccain","3A200315")
-nonPrezScrape("romney","3A200326")
+# nonPrezScrape("dole","3A200312")
+# nonPrezScrape("mccain","3A200315")
+# nonPrezScrape("romney","3A200326")

@@ -1,5 +1,4 @@
 import csv
-import Cantidate
 from hugchat import hugchat
 from hugchat.login import Login
 from collections import Counter
@@ -12,6 +11,8 @@ guns_catagories = ["More strict gun restrictions","Less strict gun restrictions"
 healthcare_catagories = ["healthcare is governments responsibility","healthcare is not governments responsibility", "no opinion about healthcare"]
 imagration_catagories = ["imagration should be kept at Present level","imagration should be Increased","imagration should be Decreased","No opinion about imagration"]
 defense_catagories = ["national security Stronger than needs to be","national security Not strong enough","national security About right","no opinion about national security"]
+
+sign = Login('jaxson.paige@lejardinacademy.org', 'KillerKiaSoul098')
 
 def get_poll_percentage(path, year):
     with open(path, mode='r') as file:
@@ -52,14 +53,14 @@ class cantidate:
         imagration_catagories = ['"imagration should be kept at Present level","imagration should be Increased","imagration should be Decreased","No opinion about imagration"']
         defense_catagories = ['"national security Stronger than needs to be","national security Not strong enough","national security About right","no opinion about national security"']
 
-        abortion_txt = f'/home/jaxson/Inspirit/rawText/{cantidate_name}/abortion.txt'
-        crime_txt = f'/home/jaxson/Inspirit/rawText/{cantidate_name}/crime.txt'
-        defense_spending_txt = f'/home/jaxson/Inspirit/rawText/{cantidate_name}/defense spending.txt'
-        education_txt = f'/home/jaxson/Inspirit/rawText/{cantidate_name}/education.txt'
-        gun_violence_txt = f'/home/jaxson/Inspirit/rawText/{cantidate_name}/gun violence.txt'
-        healthcare_txt = f'/home/jaxson/Inspirit/rawText/{cantidate_name}/healthcare.txt'
-        immigration_txt = f'/home/jaxson/Inspirit/rawText/{cantidate_name}/immigration.txt'
-        national_security_txt = f'/home/jaxson/Inspirit/rawText/{cantidate_name}/national security.txt'
+        abortion_txt = f'/Users/jaxsonpaige/Inspirit/rawText/{cantidate_name}/abortion.txt'
+        crime_txt = f'/Users/jaxsonpaige/Inspirit/rawText/{cantidate_name}/crime.txt'
+        defense_spending_txt = f'/Users/jaxsonpaige/Inspirit/rawText/{cantidate_name}/defense spending.txt'
+        education_txt = f'/Users/jaxsonpaige/Inspirit/rawText/{cantidate_name}/education.txt'
+        gun_violence_txt = f'/Users/jaxsonpaige/Inspirit/rawText/{cantidate_name}/gun violence.txt'
+        healthcare_txt = f'/Users/jaxsonpaige/Inspirit/rawText/{cantidate_name}/healthcare.txt'
+        immigration_txt = f'/Users/jaxsonpaige/Inspirit/rawText/{cantidate_name}/immigration.txt'
+        national_security_txt = f'/Users/jaxsonpaige/Inspirit/rawText/{cantidate_name}/national security.txt'
 
         abortion_labels = []
         crime_labels = []
@@ -70,7 +71,6 @@ class cantidate:
         immigration_labels = []
         national_security_labels = []
 
-        sign = Login('jaxson.paige@lejardinacademy.org', 'KillerKiaSoul098')
         cookies = sign.login()
         chatbot = hugchat.ChatBot(cookies=cookies.get_dict(), default_llm='meta-llama/Meta-Llama-3.1-70B-Instruct')
 
