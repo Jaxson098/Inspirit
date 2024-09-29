@@ -2,6 +2,12 @@ import csv
 from hugchat import hugchat
 from hugchat.login import Login
 from collections import Counter
+from transformers import AutoModelForCausalLM, AutoTokenizer
+import torch
+import requests
+import json
+import regex as re
+
 
 abortion_catagories = ["Abortion should always Legal", "Abortion should be sometimes legal", "Abortion should be illegal", "no opinion about abortion"]
 crime_catagories = ["satisfied with crime","dissatisfied with crime","No opinion about crime"]
@@ -12,7 +18,27 @@ healthcare_catagories = ["healthcare is governments responsibility","healthcare 
 imagration_catagories = ["imagration should be kept at Present level","imagration should be Increased","imagration should be Decreased","No opinion about imagration"]
 defense_catagories = ["national security Stronger than needs to be","national security Not strong enough","national security About right","no opinion about national security"]
 
-sign = Login('jaxson.paige@lejardinacademy.org', 'KillerKiaSoul098')
+url = "http://localhost:11434/api/chat"
+
+def llama3(prompt):
+    data = {
+        "model": "llama3.1",
+        "messages": [
+            {
+              "role": "user",
+              "content": prompt
+            }
+        ],
+        "stream": False
+    }
+    
+    headers = {
+        'Content-Type': 'application/json'
+    }
+    
+    response = requests.post(url, headers=headers, json=data)
+    
+    return(response.json()['message']['content'])
 
 def get_poll_percentage(path, year):
     with open(path, mode='r') as file:
@@ -42,25 +68,43 @@ def get_poll_index(path, year):
     return labelIndex
 
 class cantidate:
-    def __init__(self, cantidate_name):
+    def __init__(self,cantidate_name):
 
-        abortion_catagories = ['"Abortion should always be Legal", "Abortion should be sometimes legal", "Abortion should be illegal", "no opinion about abortion"']
-        crime_catagories = ['"satisfied with crime","dissatisfied with crime","No opinion about crime"']
-        millitarySpending_catagories = ['"Too little Millitary spending", "Too much Millitary spending", "no opinion about Millitary spending"']
-        education_catagories = ['"very satisfied with education","Somewhat satisfied with Education","Somewhat dissatisfied with Education","Completely dissatisfied with Education","No opinion about Education"']
-        guns_catagories = ['"More strict gun restrictions","Less strict gun restrictions","gun restrictions Kept as now","No opinion about gun restrictions"']
-        healthcare_catagories = ['"healthcare is governments responsibility","healthcare is not governments responsibility", "no opinion about healthcare"']
-        imagration_catagories = ['"imagration should be kept at Present level","imagration should be Increased","imagration should be Decreased","No opinion about imagration"']
-        defense_catagories = ['"national security Stronger than needs to be","national security Not strong enough","national security About right","no opinion about national security"']
+        # abortion_catagories = ["'Abortion should always be Legal'", "'Abortion should be sometimes legal'", "'Abortion should be illegal'", "'no opinion about abortion'"]
+        # crime_catagories = ["'satisfied with crime'","'dissatisfied with crime'","'No opinion about crime'"]
+        # millitarySpending_catagories = ["'Too little Millitary spending'", "'Too much Millitary spending'", "'no opinion about Millitary spending'"]
+        # education_catagories = ["'very satisfied with education'","'Somewhat satisfied with Education'","'Somewhat dissatisfied with Education'","'Completely dissatisfied with Education'","'No opinion about Education'"]
+        # guns_catagories = ["'More strict gun restrictions'","'Less strict gun restrictions'","'gun restrictions Kept as now'","'No opinion about gun restrictions'"]
+        # healthcare_catagories = ["'healthcare is governments responsibility'","'healthcare is not governments responsibility'", "'no opinion about healthcare'"]
+        # imagration_catagories = ["'imagration should be kept at Present level'","'imagration should be Increased'","'imagration should be Decreased'","'No opinion about imagration'"]
+        # defense_catagories = ["'national security Stronger than needs to be'","'national security Not strong enough'","'national security About right'","'no opinion about national security'"]
 
-        abortion_txt = f'/Users/jaxsonpaige/Inspirit/rawText/{cantidate_name}/abortion.txt'
-        crime_txt = f'/Users/jaxsonpaige/Inspirit/rawText/{cantidate_name}/crime.txt'
-        defense_spending_txt = f'/Users/jaxsonpaige/Inspirit/rawText/{cantidate_name}/defense spending.txt'
-        education_txt = f'/Users/jaxsonpaige/Inspirit/rawText/{cantidate_name}/education.txt'
-        gun_violence_txt = f'/Users/jaxsonpaige/Inspirit/rawText/{cantidate_name}/gun violence.txt'
-        healthcare_txt = f'/Users/jaxsonpaige/Inspirit/rawText/{cantidate_name}/healthcare.txt'
-        immigration_txt = f'/Users/jaxsonpaige/Inspirit/rawText/{cantidate_name}/immigration.txt'
-        national_security_txt = f'/Users/jaxsonpaige/Inspirit/rawText/{cantidate_name}/national security.txt'
+        abortion_catagories = ["abortion should always be legal", "abortion should be sometimes legal", "abortion should be illegal", "no opinion about abortion"]
+        crime_catagories = ["satisfied with crime","dissatisfied with crime","no opinion about crime"]
+        millitarySpending_catagories = ["too little military spending", "too much millitary spending", "no opinion about millitary spending"]
+        education_catagories = ["very satisfied with education","somewhat satisfied with education","somewhat dissatisfied with education","completely dissatisfied with education","no opinion about education"]
+        guns_catagories = ["more strict gun restrictions","less strict gun restrictions","gun restrictions kept as now","no opinion about gun restrictions"]
+        healthcare_catagories = ["healthcare is governments responsibility","healthcare is not governments responsibility", "'no opinion about healthcare'"]
+        imagration_catagories = ["imagration should be kept at present level","imagration should be increased","imagration should be decreased","no opinion about imagration"]
+        defense_catagories = ["national security stronger than needs to be","national security not strong enough","national security about right","no opinion about national security"]
+
+        # abortion_txt = f'/Users/jaxsonpaige/Inspirit/rawText/{cantidate_name}/abortion.txt'
+        # crime_txt = f'/Users/jaxsonpaige/Inspirit/rawText/{cantidate_name}/crime.txt'
+        # defense_spending_txt = f'/Users/jaxsonpaige/Inspirit/rawText/{cantidate_name}/defense spending.txt'
+        # education_txt = f'/Users/jaxsonpaige/Inspirit/rawText/{cantidate_name}/education.txt'
+        # gun_violence_txt = f'/Users/jaxsonpaige/Inspirit/rawText/{cantidate_name}/gun violence.txt'
+        # healthcare_txt = f'/Users/jaxsonpaige/Inspirit/rawText/{cantidate_name}/healthcare.txt'
+        # immigration_txt = f'/Users/jaxsonpaige/Inspirit/rawText/{cantidate_name}/immigration.txt'
+        # national_security_txt = f'/Users/jaxsonpaige/Inspirit/rawText/{cantidate_name}/national security.txt'
+
+        abortion_txt = f'/home/jaxson/Inspirit/rawText/{cantidate_name}/abortion.txt'
+        crime_txt = f'/home/jaxson/Inspirit/rawText/{cantidate_name}/crime.txt'
+        defense_spending_txt = f'/home/jaxson/Inspirit/rawText/{cantidate_name}/defense spending.txt'
+        education_txt = f'/home/jaxson/Inspirit/rawText/{cantidate_name}/education.txt'
+        gun_violence_txt = f'/home/jaxson/Inspirit/rawText/{cantidate_name}/gun violence.txt'
+        healthcare_txt = f'/home/jaxson/Inspirit/rawText/{cantidate_name}/healthcare.txt'
+        immigration_txt = f'/home/jaxson/Inspirit/rawText/{cantidate_name}/immigration.txt'
+        national_security_txt = f'/home/jaxson/Inspirit/rawText/{cantidate_name}/national security.txt'
 
         abortion_labels = []
         crime_labels = []
@@ -71,16 +115,14 @@ class cantidate:
         immigration_labels = []
         national_security_labels = []
 
-        cookies = sign.login()
-        chatbot = hugchat.ChatBot(cookies=cookies.get_dict(), default_llm='meta-llama/Meta-Llama-3.1-70B-Instruct')
-
         def scoring(path,catagories,label_list):
             with open(path, "r") as file:
                 for line in file:
-                    score = chatbot.chat(f'''do not answer with anything but one of these categories: {catagories}. which of those categories do you thin fits this sentence best: {line}''')
-                    label_list.append(str(score))
+                    score = llama3(f"do not answer with anything but one of these categories with no punctuation: {catagories}. which of those categories do you thin fits this sentence best: {line}")
+                    noPunc = re.sub(r"[\'\"\.\[\]]", "", str(score))
+                    label_list.append(noPunc.lower())
                     print(f"line: {line}")
-                    print(f"score: {score}\n")
+                    print(f"score: {noPunc.lower()}\n")
 
         scoring(abortion_txt,abortion_catagories,abortion_labels)
         scoring(crime_txt,crime_catagories,crime_labels)
@@ -100,15 +142,23 @@ class cantidate:
         immigration_counted = Counter(immigration_labels)
         national_security_counted = Counter(national_security_labels)
 
-        abortion_index = abortion_catagories.index(str(abortion_counted.most_common()[0][0]))
-        crime_index = crime_catagories.index(str(crime_counted.most_common()[0][0]))
-        defense_spending_index = millitarySpending_catagories.index(str(defense_spending_counted.most_common()[0][0]))
-        education_index = education_catagories.index(str(education_counted.most_common()[0][0]))
-        gun_violence_index = guns_catagories.index(str(gun_violence_counted.most_common()[0][0]))
-        healthcare_index = healthcare_catagories.index(str(healthcare_counted.most_common()[0][0]))
-        immigration_index = imagration_catagories.index(str(immigration_counted.most_common()[0][0]))
-        national_security_index = defense_catagories.index(str(national_security_counted.most_common()[0][0]))
+        print(f"\nabortion_counted:{str(abortion_counted.most_common()[0][0])}")
+        print(f"\ncrime_counted: {str(crime_counted.most_common()[0][0])}")
+        print(f"\ndefense_spending_counted: {str(defense_spending_counted.most_common()[0][0])}")
+        print(f"\neducation_counted: {str(education_counted.most_common()[0][0])}")
+        print(f"\ngun_violence_counted: {str(gun_violence_counted.most_common()[0][0])}")
+        print(f"\nhealthcare_counted: {str(healthcare_counted.most_common()[0][0])}")
+        print(f"\nimmigration_counted: {str(immigration_counted.most_common()[0][0])}")
+        print(f"\nnational_security_counted: {str(national_security_counted.most_common()[0][0])}")
 
+        self.abortion_index = abortion_catagories.index(str(abortion_counted.most_common()[0][0]))
+        self.crime_index = crime_catagories.index(str(crime_counted.most_common()[0][0]))
+        self.defense_spending_index = millitarySpending_catagories.index(str(defense_spending_counted.most_common()[0][0]))
+        self.education_index = education_catagories.index(str(education_counted.most_common()[0][0]))
+        self.gun_violence_index = guns_catagories.index(str(gun_violence_counted.most_common()[0][0]))
+        self.healthcare_index = healthcare_catagories.index(str(healthcare_counted.most_common()[0][0]))
+        self.immigration_index = imagration_catagories.index(str(immigration_counted.most_common()[0][0]))
+        self.national_security_index = defense_catagories.index(str(national_security_counted.most_common()[0][0]))
 
 
 class Election:
@@ -142,6 +192,7 @@ class Election:
         # can1_Defense_percentage = defense_catagories.index(cantidate_1.defense_scores["scores"][0])
 
         can1_Abortion_index = cantidate_1.abortion_index
+        print(f"\ncan1 abortion index: {can1_Abortion_index}\n")
         can1_Crime_index = cantidate_1.crime_index
         can1_MillitarySpending_index = cantidate_1.defense_spending_index
         can1_Education_index = cantidate_1.education_index
@@ -182,35 +233,44 @@ class Election:
             writer = csv.writer(csvfile)
             writer.writerow(data)
 
-biden = cantidate("biden")
-trump = cantidate("trump")
-# obama = cantidate("obama")
+# biden = cantidate("biden")
+# trump = cantidate("trump")
+obama = cantidate("obama")
 # reagen = cantidate("reagen")
+
 # Wbush = cantidate("Wbush")
+
 # HWbush = cantidate("HWbush")
-# dukakis = cantidate("dukakis")
-# kerry = cantidate("kerry")
+
+# # dukakis = cantidate("dukakis")
+# # kerry = cantidate("kerry")
+
 # clinton = cantidate("clinton")
 # Hclinton = cantidate("Hclinton")
 # carter = cantidate("carter")
 # dole = cantidate("dole")
-# gore = cantidate("gore")
-# mccain = cantidate("mccain")
+
+# # gore = cantidate("gore")
+
+mccain = cantidate("mccain")
 # romney = cantidate("romney")
+
 # mondle = cantidate("mondle")
 # kenedy = cantidate("kenedy")
 # nixon = cantidate("nixon")
 # ford = cantidate("ford")
 # perot = cantidate("perot")
 
-Election(2020,biden,trump)
+# Election(2020,biden,trump)
 # Election(2016,Hclinton,trump)
 # Election(2012,obama,romney)
-# Election(2008,obama,mccain)
-# Election(2004,kerry,Wbush)
-# Election(2000,gore,Wbush)
+Election(2008,obama,mccain)
 # Election(1996,clinton,dole)
 # Election(1992,clinton,HWbush)
+# Election(1980,carter,reagen)
+
+# Election(2004,kerry,Wbush)
+# Election(2000,gore,Wbush)
+
 # Election(1988,dukakis,HWbush)
 # Election(1984,mondle,reagen)
-# Election(1980,carter,reagen)
