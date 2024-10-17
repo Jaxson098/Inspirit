@@ -1,23 +1,27 @@
-from transformers import AutoModelForCausalLM, AutoTokenizer
-import torch
+import requests
+import json
 
-# Load the tokenizer and model
-model_name = "/Users/jaxsonpaige/.llama/checkpoints/Meta-Llama3.1-8B"  # or the Hugging Face model name if available
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModelForCausalLM.from_pretrained(model_name)
+url = "http://localhost:11434/api/chat"
 
-# Move the model to the GPU if available
-device = "cuda" if torch.cuda.is_available() else "cpu"
-model.to(device)
+def llama3(prompt):
+    data = {
+        "model": "llama3.1",
+        "messages": [
+            {
+              "role": "user",
+              "content": prompt
+            }
+        ],
+        "stream": False
+    }
+    
+    headers = {
+        'Content-Type': 'application/json'
+    }
+    
+    response = requests.post(url, headers=headers, json=data)
+    
+    return(response.json()['message']['content'])
 
-# Define input text for generation
-input_text = "Once upon a time"
-
-# Tokenize input text
-inputs = tokenizer(input_text, return_tensors="pt").to(device)
-
-# Generate text
-output = model.generate(**inputs, max_length=50)
-
-# Decode and print generated text
-print(tokenizer.decode(output[0], skip_special_tokens=True))
+response=llama3("how are you")
+print(response)
