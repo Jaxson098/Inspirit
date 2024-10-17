@@ -44,27 +44,38 @@ def get_poll_percentage(path, year):
     with open(path, mode='r') as file:
         reader = csv.reader(file)
         rows = []
+        int_row = []
             
         for row in reader:
             if str(year) in row[0]: 
                 rows.append(row)
-                
+
     yearData = rows[-1]
-    maxValue = max(yearData)
+    
+    for i in yearData:
+        int_row.append(int(i))
+
+    maxValue = max(int_row)
     return maxValue
 
 def get_poll_index(path, year):
     with open(path, mode='r') as file:
         reader = csv.reader(file)
         rows = []
+        int_row = []
             
         for row in reader:
             if str(year) in row[0]: 
                 rows.append(row)
+
                 
     yearData = rows[-1]
-    maxValue = max(yearData)
-    labelIndex = yearData.index(maxValue) -1
+
+    for i in yearData:
+        int_row.append(int(i))
+
+    maxValue = max(int_row)
+    labelIndex = int_row.index(maxValue) -1
     return labelIndex
 
 class cantidate:
@@ -125,7 +136,7 @@ class cantidate:
                     print(f"score: {noPunc.lower()}\n")
 
         scoring(abortion_txt,abortion_catagories,abortion_labels)
-        scoring(crime_txt,crime_catagories,crime_labels)
+        s    yearData = rows[-1]coring(crime_txt,crime_catagories,crime_labels)
         scoring(defense_spending_txt,millitarySpending_catagories,defense_spending_labels)
         scoring(education_txt,education_catagories,education_labels)
         scoring(gun_violence_txt,guns_catagories,gun_violence_labels)
@@ -235,7 +246,7 @@ class Election:
 
 # biden = cantidate("biden")
 # trump = cantidate("trump")
-obama = cantidate("obama")
+# obama = cantidate("obama")
 # reagen = cantidate("reagen")
 
 # Wbush = cantidate("Wbush")
@@ -245,14 +256,14 @@ obama = cantidate("obama")
 # # dukakis = cantidate("dukakis")
 # # kerry = cantidate("kerry")
 
-# clinton = cantidate("clinton")
+clinton = cantidate("clinton")
 # Hclinton = cantidate("Hclinton")
 # carter = cantidate("carter")
-# dole = cantidate("dole")
+dole = cantidate("dole")
 
 # # gore = cantidate("gore")
 
-mccain = cantidate("mccain")
+# mccain = cantidate("mccain")
 # romney = cantidate("romney")
 
 # mondle = cantidate("mondle")
@@ -264,8 +275,8 @@ mccain = cantidate("mccain")
 # Election(2020,biden,trump)
 # Election(2016,Hclinton,trump)
 # Election(2012,obama,romney)
-Election(2008,obama,mccain)
-# Election(1996,clinton,dole)
+# Election(2008,obama,mccain)
+Election(1996,clinton,dole)
 # Election(1992,clinton,HWbush)
 # Election(1980,carter,reagen)
 
